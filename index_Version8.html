@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mesa Rebelde | El Poder de lo Poco Convencional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --negro: #0A0A0A;
+            --verde: #004D3C;
+            --dorado: #C9A227;
+            --blanco: #FFFFFF;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            background: var(--negro);
+            font-family: 'Playfair Display', serif;
+            color: var(--blanco);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        nav {
+            width: 100%;
+            background: var(--negro);
+            border-bottom: 2px solid var(--dorado);
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul { display: flex; gap: 32px; padding: 24px; list-style: none; }
+        nav ul li a {
+            color: var(--dorado);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.15em;
+            letter-spacing: 2px;
+            transition: color 0.2s;
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background: var(--verde);
+            color: var(--blanco);
+        }
+        header.hero {
+            padding-top: 100px;
+            background: linear-gradient(rgba(10,10,10,0.92), rgba(0,77,60,0.7)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-main {
+            margin-top: 60px;
+            color: var(--dorado);
+            font-family: 'Cinzel', serif;
+            font-size: 3.4rem;
+            letter-spacing: 11px;
+            text-shadow: 0 2px 15px #000d;
+        }
+        .hero-slogan {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--blanco);
+            margin: 22px 0 35px 0;
+        }
+        .hero-voice {
+            color: var(--blanco);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 25px;
+            font-size: 1.08em;
+        }
+        .hero-button {
+            background: var(--dorado);
+            color: var(--negro);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            padding: 16px 40px;
+            font-size: 1.15em;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px #0006;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .hero-button:hover {
+            background: var(--verde);
+            color: var(--dorado);
+            transform: scale(1.05);
+        }
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 85px 4% 35px 4%;
+        }
+        section h2 {
+            color: var(--dorado);
+            font-family: 'Cinzel', serif;
+            font-size: 2.2em;
+            text-align: center;
+            letter-spacing: 6px;
+            margin-bottom: 28px;
+        }
+        section h3 {
+            color: var(--verde);
+            font-family: 'Cinzel', serif;
+            font-size: 1.3em;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+        section .section-message {
+            color: var(--blanco);
+            font-style: italic;
+            font-size: 1.08em;
+            text-align: center;
+            margin-bottom: 42px;
+        }
+        .menu-section-subtitle {
+            color: var(--verde);
+            font-family: 'Cinzel', serif;
+            font-size: 1.11em;
+            letter-spacing: 3px;
+            margin: 36px 0 13px 0;
+            text-align: left;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 40px;
+        }
+        .menu-item {
+            border: 1.5px solid var(--dorado);
+            background: linear-gradient(135deg, #0A0A0A 90%, #004D3C 110%);
+            border-radius: 14px;
+            padding: 22px 15px 23px 15px;
+            box-shadow: 0 4px 14px #0004;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.15s, box-shadow 0.2s;
+            min-width: 0;
+            position: relative;
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            transform: translateY(-8px) scale(1.025);
+            box-shadow: 0 7px 28px #0008;
+            border-color: var(--verde);
+        }
+        .menu-item img {
+            width: 100%;
+            max-width: 215px;
+            border-radius: 12px;
+            border: 2.5px solid var(--dorado);
+            margin-bottom: 12px;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+            background: #222;
+        }
+        .menu-item h4 {
+            color: var(--dorado);
+            font-family: 'Cinzel', serif;
+            font-size: 1.23em;
+            margin-bottom: 7px;
+        }
+        .menu-item .precio {
+            color: var(--dorado);
+            font-family: 'Cinzel', serif;
+            margin-top: 6px;
+            font-size: 1.09em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .modal-bg {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #000b;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .modal {
+            background: var(--negro);
+            border-radius: 13px;
+            padding: 40px 25px 28px 25px;
+            max-width: 360px;
+            box-shadow: 0 0 30px #000e;
+            text-align: center;
+            position: relative;
+            color: var(--blanco);
+            border: 2.5px solid var(--dorado);
+        }
+        .modal img {
+            max-width: 160px;
+            border-radius: 10px;
+            margin-bottom: 11px;
+            border: 2px solid var(--verde);
+        }
+        .modal h3 {
+            color: var(--dorado);
+            font-family: 'Cinzel', serif;
+        }
+        .modal-desc {
+            font-size: 1.05em;
+            margin: 15px 0;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 14px;
+            background: var(--dorado);
+            color: var(--negro);
+            border: none;
+            border-radius: 29px;
+            font-size: 1.2em;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: 'Cinzel',serif;
+            font-weight: bold;
+        }
+        .close-btn:hover { background: var(--verde); color: var(--dorado); }
+        footer {
+            background: var(--negro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 50px 0 30px 0;
+            font-size: 1em;
+            border-top: 1.5px solid var(--dorado);
+            margin-top: 60px;
+        }
+        .footer-voice {
+            color: var(--dorado);
+            font-family: 'Cinzel', serif;
+            font-size: 1.11em;
+        }
+        @media(max-width: 900px){
+            .menu-grid {grid-template-columns: 1fr;}
+            nav ul{gap:20px;}
+            .hero-main{font-size:2.2rem;}
+        }
+        @media(max-width:600px){
+            section{padding:60px 2% 12px 2%;}
+            .modal{padding:18px 5px;}
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <ul>
+            <li><a href="#inicio" class="active">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#menu">Carta</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- INICIO / HERO -->
+    <header class="hero" id="inicio">
+        <div class="hero-main">LA MESA REBELDE</div>
+        <div class="hero-slogan">LA COCINA NO SIGUE RECETAS. LAS DESAFÍA.</div>
+        <div class="hero-voice">"La cocina siempre ha sido el lenguaje del poder".</div>
+        <a href="#menu" class="hero-button">Ver la Carta Insurgente</a>
+    </header>
+
+    <!-- NOSOTROS -->
+    <section id="nosotros">
+        <h2>Nosotros</h2>
+        <div class="section-message">
+            "Hay platos que se degustan. Y experiencias que se recuerdan."
+        </div>
+        <p style="text-align:center; max-width:700px; margin:auto;">
+            La Mesa Rebelde es más que un restaurante: es una declaración. Cada elemento de nuestra carta fusiona alta técnica culinaria, ingredientes de excelencia y una pasión insurrecta capaz de transformar lo ordinario en memorable.<br><br>
+            Nuestra filosofía celebra la creatividad, la diversidad y el valor de lo poco convencional. Aquí, cada platillo desafía el paladar y honra el poder de la cocina como arte.
+        </p>
+    </section>
+
+    <!-- MENU: LA CARTA INSURGENTE -->
+    <section id="menu">
+        <h2>LA CARTA INSURGENTE</h2>
+        <div class="section-message">
+            El sabor no se explica. Se reconoce.
+        </div>
+        <!-- Entradas -->
+        <h3 class="menu-section-subtitle">Entradas (The Prelude)</h3>
+        <div class="menu-grid">
+            <!-- Flautas de la Casa -->
+            <div class="menu-item" onclick="mostrarModal(0)">
+                <img src="https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/flautas.jpg.jpeg" alt="Flautas de la Casa">
+                <h4>Flautas de la Casa</h4>
+                <span class="precio">$15</span>
+            </div>
+            <!-- Albóndigas de Autor -->
+            <div class="menu-item" onclick="mostrarModal(1)">
+                <img src="https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/albondigas.jpg.jpeg" alt="Albóndigas de Autor">
+                <h4>Albóndigas de Autor</h4>
+                <span class="precio">$22</span>
+            </div>
+        </div>
+        <!-- Platos Fuertes -->
+        <h3 class="menu-section-subtitle" style="margin-top:42px;">Platos Fuertes (The Sovereign Table)</h3>
+        <div class="menu-grid">
+            <!-- La Burger Rebelde -->
+            <div class="menu-item" onclick="mostrarModal(2)">
+                <img src="https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/hamburguesa.jpg.jpg" alt="La Burger Rebelde">
+                <h4>La Burger Rebelde</h4>
+                <span class="precio">$18</span>
+            </div>
+            <!-- Tacos de la Rivera -->
+            <div class="menu-item" onclick="mostrarModal(3)">
+                <img src="https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/tacos.jpg.jpg" alt="Tacos de la Rivera">
+                <h4>Tacos de la Rivera</h4>
+                <span class="precio">$28</span>
+            </div>
+            <!-- Pasta del Atelier -->
+            <div class="menu-item" onclick="mostrarModal(4)">
+                <img src="https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/pasta.jpg.jpg" alt="Pasta del Atelier">
+                <h4>Pasta del Atelier</h4>
+                <span class="precio">$40</span>
+            </div>
+        </div>
+        <!-- Postres -->
+        <h3 class="menu-section-subtitle" style="margin-top:42px;">Postres &amp; Finales (The Legacy)</h3>
+        <div class="menu-grid">
+            <!-- Degustación de Dulce Rebelde -->
+            <div class="menu-item" onclick="mostrarModal(5)">
+                <img src="https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/postre.jpg.jpg" alt="Degustación de Dulce Rebelde">
+                <h4>Degustación de Dulce Rebelde</h4>
+                <span class="precio">$5</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL MENU DETALLE -->
+    <div class="modal-bg" id="modal-bg">
+        <div class="modal" id="modal">
+            <button class="close-btn" onclick="cerrarModal()">&times;</button>
+            <img id="modal-img" src="" alt="">
+            <h3 id="modal-title"></h3>
+            <div class="modal-desc" id="modal-desc"></div>
+            <span class="precio" id="modal-price"></span>
+        </div>
+    </div>
+
+    <!-- UBICACION -->
+    <section id="ubicacion">
+        <h2>Ubicación</h2>
+        <div class="section-message">
+            Las Mercedes, Caracas · 2026
+        </div>
+        <p style="text-align:center;">Nos encontramos en el corazón de Las Mercedes.<br>
+            <span style="font-style:italic; color:var(--dorado);">Ven a descubrir el poder de lo poco convencional.</span>
+        </p>
+        <div style="margin: 30px 0;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.1812889712266!2d-66.85572598480857!3d10.49772319248611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a583433f0c705%3A0x9461d4ebcf1384f1!2sLas%20Mercedes!5e0!3m2!1ses!2sve!4v1615641707678!5m2!1ses!2sve" 
+                width="100%" height="320" style="border:1.7px solid var(--dorado);border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>    
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="section-message">
+            ¿Quieres reservar? ¿Buscas experiencia privada? <br> Escríbenos y descubre la revolución del sabor.
+        </div>
+        <div style="text-align:center; margin-bottom:24px; color:#C9A227; font-family:'Cinzel',serif;font-size:1.18em;">
+            Puedes reservar tu mesa llamando o por WhatsApp al <b>0412-022-5051</b>
+        </div>
+        <form style="max-width:460px; margin:auto;">
+            <input type="text" placeholder="Tu nombre" required style="width:100%;margin:8px 0 20px 0;padding:12px;border-radius:6px;border:1.5px solid var(--dorado);font-size:1em;">
+            <input type="email" placeholder="Correo electrónico" required style="width:100%;margin:8px 0 20px 0;padding:12px;border-radius:6px;border:1.5px solid var(--dorado);font-size:1em;">
+            <textarea placeholder="Tu mensaje" rows="4" required style="width:100%;margin:7px 0 15px 0;padding:12px;border-radius:6px;border:1.5px solid var(--dorado);font-size:1em;"></textarea>
+            <button type="submit" style="background:var(--verde);color:var(--blanco);border:none;padding:10px 40px;border-radius:25px;font-family:'Cinzel',serif;font-weight:bold;font-size:1.1em;cursor:pointer;transition:background 0.22s;">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-voice">
+            EL SABOR NO SE EXPLICA. SE RECONOCE.
+        </div>
+        <div style="margin-top:15px; color:var(--dorado);">
+            Las Mercedes, Caracas · 2026
+        </div>
+    </footer>
+
+    <script>
+        // Detalles de los platillos con los enlaces RAW corregidos
+        const menuDetalles = [
+            {
+                nombre: 'Flautas de la Casa',
+                img: 'https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/flautas.jpg.jpeg',
+                descripcion: `Tres flautas crujientes sobre emulsión de aguacate y polvo de oro de 18k.<br>
+                <em>Hay platos que se degustan. Y experiencias que se recuerdan.</em>`,
+                precio: '$15'
+            },
+            {
+                nombre: 'Albóndigas de Autor',
+                img: 'https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/albondigas.jpg.jpeg',
+                descripcion: `Albóndigas de ternera Wagyu en reducción de tomate San Marzano y lluvia de queso trufado.<br>
+                <em>El sabor no se explica. Se reconoce.</em>`,
+                precio: '$22'
+            },
+            {
+                nombre: 'La Burger Rebelde',
+                img: 'https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/hamburguesa.jpg.jpg',
+                descripcion: `Carne madurada 45 días, queso fundido, tocino glaseado y pan brioche artesanal.<br>
+                <em>La cocina siempre ha sido el lenguaje del poder.</em>`,
+                precio: '$18'
+            },
+            {
+                nombre: 'Tacos de la Rivera',
+                img: 'https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/tacos.jpg.jpg',
+                descripcion: `Selección de cuatro tacos de autor con proteína premium y vegetales de temporada.<br>
+                <em>Una experiencia insurrecta y vibrante.</em>`,
+                precio: '$28'
+            },
+            {
+                nombre: 'Pasta del Atelier',
+                img: 'https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/pasta.jpg.jpg',
+                descripcion: `Pasta larga hecha a mano con salsa de frutos del mar y láminas de trufa negra.<br>
+                <em>Cuando la técnica se convierte en arte.</em>`,
+                precio: '$40'
+            },
+            {
+                nombre: 'Degustación de Dulce Rebelde',
+                img: 'https://raw.githubusercontent.com/Zalmer48/La-Mesa-Rebelde/main/postre.jpg.jpg',
+                descripcion: `Selección pequeña de postres experimentales.<br>
+                <em>El final también puede ser revolucionario.</em>`,
+                precio: '$5'
+            }
+        ];
+
+        function mostrarModal(idx){
+            const platillo = menuDetalles[idx];
+            document.getElementById('modal-title').textContent = platillo.nombre;
+            document.getElementById('modal-img').src = platillo.img;
+            document.getElementById('modal-img').alt = platillo.nombre;
+            document.getElementById('modal-desc').innerHTML = platillo.descripcion;
+            document.getElementById('modal-price').textContent = platillo.precio;
+            document.getElementById('modal-bg').style.display = 'flex';
+        }
+        function cerrarModal(){
+            document.getElementById('modal-bg').style.display = 'none';
+        }
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link=>{
+            link.addEventListener('click', function(e){
+                navLinks.forEach(l=>l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        navLinks.forEach(link=>{
+            link.addEventListener('click', function(e){
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) target.scrollIntoView({behavior:'smooth'});
+            });
+        });
+        document.querySelector("form").addEventListener("submit", e=>{
+            e.preventDefault();
+            alert("¡Gracias por contactarnos! Te responderemos pronto.");
+            e.target.reset();
+        });
+        document.getElementById('modal-bg').addEventListener('click', function(e){
+            if(e.target===this) cerrarModal();
+        });
+    </script>
+</body>
+</html>
